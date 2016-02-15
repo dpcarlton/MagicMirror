@@ -11,7 +11,7 @@ var config = {
 
         params: {
             loc:  '38.8673,-104.7607',  //Colorado Springs
-            apiID:  '3a56a2a604c59597ec94f2ada341e263'
+            apiID:  '<your api key>'
         }
     },
 
