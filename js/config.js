@@ -7,14 +7,14 @@ var config = {
     },
     weather: {
         //change weather params here:
-        //units: metric or imperial
+        // modified to use api.forecast.io
+
         params: {
-            q: 'Baarn,Netherlands',
-            units: 'metric',
-            // if you want a different lang for the weather that what is set above, change it here
-            lang: 'nl',
-            APPID: 'YOUR_FREE_OPENWEATHER_API_KEY'
+            loc:  '38.8673,-104.7607',  //Colorado Springs
+            apiID:  '3a56a2a604c59597ec94f2ada341e263'
         }
+    },
+
     },
     compliments: {
         interval: 30000,
@@ -22,7 +22,13 @@ var config = {
         morning: [
             'Good morning, handsome!',
             'Enjoy your day!',
-            'How was your sleep?'
+            'Buenos Dias!',
+            'Bonjour',
+            'Guten Morgen!',
+            'おはようございます',
+            'God Morgon',
+            'Who wants breakfast?',
+            'How did you sleep?'
         ],
         afternoon: [
             'Hello, beauty!',
@@ -32,6 +38,15 @@ var config = {
         evening: [
             'Wow, you look hot!',
             'You look nice!',
+            'Who wants a beer?',
+            'Time for a drink?',
+            'Wine?',
+            'Alcohol is a way of life, alcohol is my way of life, and I aim to keep it.',
+            'What wine goes with Captain Crunch?',
+            'MMMMM..beer.',
+            'Everybody should believe in something. I believe I will have another drink',
+            'Beer is proof that God loves us and wants us to be happy',
+            'Here is to alcohol: the cause of, and solution to, all of lifes problems.',
             'Hi, sexy!'
         ]
     },
