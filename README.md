@@ -4,7 +4,7 @@ This is a fork from https://github.com/MichMich/MagicMirror. I was having issues
 
 You will still need to request an API Key from Forecast.io. Also, you cannot exceed 1000 requests a day, or they will charge you. The timer in this fork is set to 15m.
 
-Major changes are:
+##Major changes are:
 
   config.js - Modify to change weather parameters for api.forecast.io
   
