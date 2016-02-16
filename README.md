@@ -9,3 +9,6 @@ Major changes are:
   config.js - added new compliments and changed news to cnn.
 
   weather.js - Modified to use forecast.io
+
+To get the weather to display on the localhost using Chromium, you need to edit the startup to include the --disable-web-security cli switch.
+
