@@ -1,6 +1,8 @@
 MagicMirror
 ===========
-This is a fork from https://github.com/MichMich/MagicMirror.
+This is a fork from https://github.com/MichMich/MagicMirror. I was having issues with OpenWeather data that was very inacurate for my location. I changed the original code so that it now uses forecast.io.
+
+You will still need to request an API Key from Forecast.io. Also, you cannot exceed 1000 requests a day, or they will charge you. The timer in this fork is set to 15m.
 
 Major changes are:
 
