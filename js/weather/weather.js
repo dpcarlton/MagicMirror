@@ -25,8 +25,8 @@ var weather = {
         forecastLocation: '.forecast',
         urlBase: 'https://api.forecast.io/forecast/',
         urlEnd:  '?exclude=minutely,flags,hourly,alerts',
-        updateInterval: config.weather.interval || 300000,
-        fadeInterval: config.weather.fadeInterval || 100000,
+        updateInterval: config.weather.interval || 305000,
+        fadeInterval: config.weather.fadeInterval || 5000,
         intervalId: null,
         orientation: config.weather.orientation || 'vertical',
 }
@@ -46,10 +46,22 @@ weather.roundValue = function (temperature) {
  * @param  {int} kmh The wind speed in Kilometers Per Hour
  * @return {int}     The wind speed converted into its corresponding Beaufort number
  */
+
 weather.ms2Beaufort = function(ms) {
-        //modified for mph > knots, and correct the scale.
-        var knots = parseFloat(ms *0.868976).toFixed(0);
+        // if set to us or auto, uses mph to knots. If set to si uses kph.
+
+        var knots
+
+        if (weather.params.units == 'si') {
+                 knots = ms * 60 * 60 / 1000;
+        } else {
+                 knots = parseFloat(ms *0.868976).toFixed(0);
+
+        }
+
+
         var speeds = [0,1, 4, 7, 11, 17, 22, 28, 34, 41, 48, 56, 61];
+
         for (var beaufort in speeds) {
                 var speed = speeds[beaufort];
                 if (speed > knots) {
@@ -68,7 +80,7 @@ weather.updateCurrentWeather = function () {
                 type: 'GET',
                 dataType: 'json',
 
-                //**
+                /**
                   * add unix format timestamp to the end of the URL. forecast.io is setting the http expire header, which means the data is never
                   * refreshed in in the browser. It ignore this string, but it appears to the browser it is a new un-expired request each time.
                   */
@@ -119,7 +131,7 @@ weather.updateCurrentWeather = function () {
 weather.updateWeatherForecast = function () {
         $.ajax({
 
-                //**
+                /**
                   * add unix format timestamp to the end of the URL. forecast.io is setting the http expire header, which means the data is never
                   * refreshed in in the browser. It ignore this string, but it appears to the browser it is a new un-expired request each time.
                   */
