@@ -15,7 +15,6 @@ var config = {
         }
     },
 
-    },
     compliments: {
         interval: 30000,
         fadeInterval: 4000,
