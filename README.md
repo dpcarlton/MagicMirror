@@ -11,7 +11,9 @@ You will still need to request an API Key from Forecast.io. Also, you cannot exc
 - Modify to change weather parameters for api.forecast.io
 - Added new compliments and changed news to cnn.
 
-  weather.js - Modified to use forecast.io
+###[weather.js](js/weather/weather.js)
+
+- Modified to use forecast.io
 
 To get the weather to display on the localhost using Chromium, you need to edit the startup to include the --disable-web-security cli switch.
 
