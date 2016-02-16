@@ -10,10 +10,13 @@ var config = {
         // modified to use api.forecast.io
 
         params: {
-            loc:  '38.8673,-104.7607',  //Colorado Springs
-            apiID:  '<your api key>'
+            loc:   '38.9259,-104.8473',                            //location in lat & long
+            apiID: '3a56a2a604c59597ec94f2ada341e263',             //forecast.ipo api key
+            lang:  'en',                                            //language, english is default if not specified
+            units: 'auto'                                          // Selects the relevant units automatically, based on geographic location
         }
     },
+
 
     compliments: {
         interval: 30000,
