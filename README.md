@@ -12,3 +12,5 @@ Major changes are:
 
 To get the weather to display on the localhost using Chromium, you need to edit the startup to include the --disable-web-security cli switch.
 
+@/usr/lib/chromium-browser/chromium-browser --kiosk --incognito --disable-web-security  http://localhost/MagicMirror/index.php
+
