@@ -15,7 +15,12 @@ You will still need to request an API Key from Forecast.io. Also, you cannot exc
 
 - Modified to use forecast.io
 
-To get the weather to display on the localhost using Chromium, you need to edit the startup to include the --disable-web-security cli switch.
+## Other Modifications Needed
+To get the weather to display on the localhost using Chromium, you need to edit the startup file to include the --disable-web-security cli switch.
 
 @/usr/lib/chromium-browser/chromium-browser --kiosk --incognito --disable-web-security  http://localhost/MagicMirror/index.php
 
+This file can be located in either:
+~/.config/lxsession/LXDE-pi/autostart
+or
+/etc/xdg/lxsession/LXDE-pi/autostart
