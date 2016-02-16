@@ -60,10 +60,11 @@ weather.ms2Beaufort = function(ms) {
 /**
  * Retrieves the current temperature and weather patter from api.forecast.io
  */
+
 weather.updateCurrentWeather = function () {
         $.ajax({
                 type: 'GET',
-                url: weather.urlBase + weather.params.apiID + '/' + weather.params.loc + weather.urlEnd,
+                url: weather.urlBase + weather.params.apiID + '/' + weather.params.loc + weather.urlEnd + '&' + weather.params.units + '&' + weather.params.lang,
                 success: function (data) {
 
                         var _temperature = this.roundValue(data.currently.temperature),
@@ -106,7 +107,9 @@ weather.updateWeatherForecast = function () {
 
         $.ajax({
                 type: 'GET',
-                url: weather.urlBase + weather.params.apiID + '/' + weather.params.loc + weather.urlEnd,
+
+                url: weather.urlBase + weather.params.apiID + '/' + weather.params.loc + weather.urlEnd + '&' + weather.params.units + '&' + weather.params.lang,
+
                 success: function (data) {
 
                         var _opacity = 1,
