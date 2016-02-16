@@ -64,6 +64,7 @@ weather.ms2Beaufort = function(ms) {
 weather.updateCurrentWeather = function () {
         $.ajax({
                 type: 'GET',
+                crossDomain: true,
                 url: weather.urlBase + weather.params.apiID + '/' + weather.params.loc + weather.urlEnd + '&' + weather.params.units + '&' + weather.params.lang,
                 success: function (data) {
 
@@ -107,7 +108,7 @@ weather.updateWeatherForecast = function () {
 
         $.ajax({
                 type: 'GET',
-
+                crossDomain: true,
                 url: weather.urlBase + weather.params.apiID + '/' + weather.params.loc + weather.urlEnd + '&' + weather.params.units + '&' + weather.params.lang,
 
                 success: function (data) {
