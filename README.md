@@ -20,7 +20,7 @@ To get the weather to display on the localhost using Chromium, you need to edit 
 
 @/usr/lib/chromium-browser/chromium-browser --kiosk --incognito --disable-web-security  http://localhost/MagicMirror/index.php
 
-#This file can be located in either:
+####This file can be located in either:
 
    ~/.config/lxsession/LXDE-pi/autostart
                    or
