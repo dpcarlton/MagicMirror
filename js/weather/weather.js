@@ -75,7 +75,7 @@ weather.ms2Beaufort = function(ms) {
  * Retrieves the current temperature and weather patter from api.forecast.io
  */
 
-weather.updateCurrentWeather = function () {
+weather.updateCurrentWeatherForeCast = function () {
         $.ajax({
                 type: 'GET',
                 dataType: 'json',
@@ -88,58 +88,11 @@ weather.updateCurrentWeather = function () {
                 url: weather.urlBase + weather.params.apiID + '/' + weather.params.loc + weather.urlEnd + '&' + weather.params.units + '&' + weather.params.lang + '&' + moment().format('x'),
                 success: function (data) {
 
-                        var _temperature = this.roundValue(data.currently.temperature),
-                                _temperatureMin = this.roundValue(data.daily.data[0].temperatureMin),
-                                _temperatureMax = this.roundValue(data.daily.data[0].temperatureMax),
-                                _wind = this.roundValue(data.currently.windSpeed),
-                                _iconClass = this.iconTable[data.currently.icon];
+                //*****************************************************************************************
+                // ForeCast Section
+                //*****************************************************************************************
 
 
-                        var _icon = '<span class="icon ' + _iconClass + ' dimmed wi"></span>';
-
-                        var _newTempHtml = _icon + '' + _temperature + '&deg;';
-
-                        $(this.temperatureLocation).updateWithText(_newTempHtml, this.fadeInterval);
-
-                        var _now = moment().format('HH:mm'),
-                                _sunrise = moment(data.daily.data[0].sunriseTime*1000).format('HH:mm'),
-                                _sunset = moment(data.daily.data[0].sunsetTime*1000).format('HH:mm');
-
-
-                        var _newWindHtml = '<span class="wind"><span class="wi wi-strong-wind xdimmed"></span> ' + this.ms2Beaufort(_wind) + '</span>',
-
-                                _newSunHtml = '<span class="sun"><span class="wi wi-sunrise xdimmed"></span> ' + _sunrise + '</span>';
-
-                        if (_sunrise < _now && _sunset > _now) {
-
-                                _newSunHtml = '<span class="sun"><span class="wi wi-sunset xdimmed"></span> ' + _sunset + '</span>';
-                        }
-
-                        $(this.windSunLocation).updateWithText(_newWindHtml + ' ' + _newSunHtml,this.fadeInterval);
-
-                }.bind(this),
-                error: function () {
-
-                }
-        });
-
-}
-
-/**
- * Updates the 5 Day Forecast from the api.forecast.io
- */
-weather.updateWeatherForecast = function () {
-        $.ajax({
-
-                /**
-                  * add unix format timestamp to the end of the URL. forecast.io is setting the http expire header, which means the data is never
-                  * refreshed in in the browser. It ignore this string, but it appears to the browser it is a new un-expired request each time.
-                  */
-
-                type: 'GET',
-                url: weather.urlBase + weather.params.apiID + '/' + weather.params.loc + weather.urlEnd + '&' + weather.params.units + '&' + weather.params.lang + '&' + moment().format('x'),
-                dataType: 'json',
-                success: function (data) {
 
                         var _opacity = 1,
                                 _forecastHtml = '<tr>',
@@ -185,6 +138,43 @@ weather.updateWeatherForecast = function () {
 
                         $(this.forecastLocation).updateWithText(_forecastHtml, this.fadeInterval);
 
+
+
+                //*****************************************************************************************
+                // Current Weather Section
+                //*****************************************************************************************
+
+
+
+                        var _temperature = this.roundValue(data.currently.temperature),
+                                _temperatureMin = this.roundValue(data.daily.data[0].temperatureMin),
+                                _temperatureMax = this.roundValue(data.daily.data[0].temperatureMax),
+                                _wind = this.roundValue(data.currently.windSpeed),
+                                _iconClass = this.iconTable[data.currently.icon];
+
+
+                        var _icon = '<span class="icon ' + _iconClass + ' dimmed wi"></span>';
+
+                        var _newTempHtml = _icon + '' + _temperature + '&deg;';
+
+                        $(this.temperatureLocation).updateWithText(_newTempHtml, this.fadeInterval);
+
+                        var _now = moment().format('HH:mm'),
+                                _sunrise = moment(data.daily.data[0].sunriseTime*1000).format('HH:mm'),
+                                _sunset = moment(data.daily.data[0].sunsetTime*1000).format('HH:mm');
+
+
+                        var _newWindHtml = '<span class="wind"><span class="wi wi-strong-wind xdimmed"></span> ' + this.ms2Beaufort(_wind) + '</span>',
+
+                                _newSunHtml = '<span class="sun"><span class="wi wi-sunrise xdimmed"></span> ' + _sunrise + '</span>';
+
+                        if (_sunrise < _now && _sunset > _now) {
+
+                                _newSunHtml = '<span class="sun"><span class="wi wi-sunset xdimmed"></span> ' + _sunset + '</span>';
+                        }
+
+                        $(this.windSunLocation).updateWithText(_newWindHtml + ' ' + _newSunHtml,this.fadeInterval);
+
                 }.bind(this),
                 error: function () {
 
@@ -193,15 +183,21 @@ weather.updateWeatherForecast = function () {
 
 }
 
+/**
+ * Updates the 5 Day Forecast from the api.forecast.io
+ */
+
+
+
+
+
 weather.init = function () {
 
 
         this.intervalId = setInterval(function () {
-                this.updateCurrentWeather();
-                this.updateWeatherForecast();
+                this.updateCurrentWeatherForeCast();
         }.bind(this), this.updateInterval);
 
-        this.updateCurrentWeather();
+        this.updateCurrentWeatherForeCast();
 
-        this.updateWeatherForecast();
 }
